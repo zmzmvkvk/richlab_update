@@ -1,0 +1,40 @@
+.cardSection {
+  display: grid;
+  height: 120vh;
+  width: 100vw;
+}
+
+.cardSection {
+  min-width: 450px;
+  grid-template-areas:
+    "menu1 menu2 menu3 menu4"
+    "menu1 menu5 menu5 menu4"
+    "menu6 menu5 menu5 menu7"
+    "menu8 menu8 menu9 menu7";
+}
+
+@media (max-width: 1354px) {
+  .cardSection {
+    grid-template-areas:
+      "menu1 menu2 menu3"
+      "menu1 menu5 menu5"
+      "menu4 menu5 menu5"
+      "menu8 menu8 menu9"
+      "menu6 menu7 menu7";
+  }
+}
+
+@media (max-width: 900px) {
+  .cardSection {
+    grid-template-areas:
+      "menu1"
+      "menu2"
+      "menu3"
+      "menu4"
+      "menu5"
+      "menu6"
+      "menu7"
+      "menu8"
+      "menu9";
+  }
+}

@@ -1,0 +1,53 @@
+.card {
+  position: relative;
+  background-color: #ececec;
+  margin: 1vw;
+  min-width: 300px;
+  padding: 2vw;
+  box-sizing: border-box;
+  border-radius: 2vw;
+  border: 1px solid rgb(229, 231, 235);
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px,
+    rgba(16, 16, 16, 0.05) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+  filter: none;
+  user-select: all;
+}
+
+.blurred {
+  filter: blur(5px); /* 블러 효과 적용 */
+  user-select: none;
+}
+
+.nonBlurred {
+  filter: none;
+  user-select: all;
+}
+
+.card:nth-child(1) {
+  grid-area: menu1;
+}
+.card:nth-child(2) {
+  grid-area: menu2;
+}
+.card:nth-child(3) {
+  grid-area: menu3;
+}
+.card:nth-child(4) {
+  grid-area: menu4;
+}
+.card:nth-child(5) {
+  grid-area: menu5;
+}
+.card:nth-child(6) {
+  grid-area: menu6;
+}
+.card:nth-child(7) {
+  grid-area: menu7;
+}
+.card:nth-child(8) {
+  grid-area: menu8;
+}
+.card:nth-child(9) {
+  grid-area: menu9;
+}

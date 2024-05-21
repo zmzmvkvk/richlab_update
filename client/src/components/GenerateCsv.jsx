@@ -2,18 +2,20 @@ import React from 'react';
 import axios from "axios";
 
 const GenerateCsv = () => {
+
   const handleGenerate = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    for (let key of data.keys()) {
-      console.log(key, data.get(key));
-    }
-    try {
-      const response = await axios.post("/sourcing", data); // 헤더 제거
+    const formData = new FormData(event.target);  // 이벤트 타겟으로부터 FormData 생성
 
+    try {
+      const response = await axios.post("/sourcing", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'  // 적절한 Content-Type 설정
+        }
+      });
       console.log('Server response:', response.data);
     } catch (error) {
-      console.error("csv error:", error);
+      console.error("CSV error:", error);
     }
   };
 

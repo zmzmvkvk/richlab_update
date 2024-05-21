@@ -6,8 +6,7 @@ import { useAuth } from "../context/AuthContext";
 const Login = () => {
   const [userid, setId] = useState("");
   const [userpw, setPw] = useState("");
-  const { logout, login, isLoggedIn } = useAuth();
-
+  const { logout, login, isLoggedIn, username, brandname } = useAuth();
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -15,7 +14,13 @@ const Login = () => {
         userid,
         userpw,
       });
-      login(response.data.token); // 로그인 상태 업데이트
+      const { token, username, brandname, mobile } = response.data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('username', username);
+      localStorage.setItem('brandname', brandname);
+      localStorage.setItem('mobile', mobile);
+      login(token, username, brandname, mobile); // 로그인 상태 업데이트
+
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -74,7 +79,10 @@ const Login = () => {
         <p>
           안녕하세요.
           <br />
-          김서준님.
+          
+          {`
+          ${username}(${brandname})님.
+          `}
         </p>
         <button className={styles.LogoutButton} onClick={handleLogout}>
           로그아웃하기

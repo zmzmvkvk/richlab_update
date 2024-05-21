@@ -5,13 +5,19 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [username, setUsername] = useState("");
+  const [brandname, setBrandname] = useState("");
+  const [mobile, setMoblie] = useState("");
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
+      setUsername(localStorage.getItem("username"));
+      setBrandname(localStorage.getItem("brandname"));
+      setMoblie(localStorage.getItem("mobile"));
       verifyToken(token);
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const verifyToken = async (token) => {
     try {
@@ -29,20 +35,31 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
+  const login = (token, username, brandname, mobile) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('username', username);
+    localStorage.setItem('brandname', brandname);
+    localStorage.setItem('mobile', mobile);
     setIsLoggedIn(true);
+    setUsername(username);
+    setBrandname(brandname);
+    setMoblie(mobile);
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   };
 
+
+    
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("brandname");
+    localStorage.removeItem("mobile");
     setIsLoggedIn(false);
     delete axios.defaults.headers.common["Authorization"];
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, username, brandname, mobile }}>
       {children}
     </AuthContext.Provider>
   );

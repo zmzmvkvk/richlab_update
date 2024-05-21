@@ -1,7 +1,10 @@
 const { spawn } = require('child_process');
 
-async function runSourcing(bufferData, res) {
-    const pythonProcess = spawn('python3', ['./python/sourcing.py']);
+async function runSourcing(bufferData, res, user) {
+    // 사용자 데이터를 JSON 문자열로 변환
+    const userString = JSON.stringify(user);
+    
+    const pythonProcess = spawn('python3', ['./python/sourcing.py', userString]);
 
     pythonProcess.stdin.write(bufferData);
     pythonProcess.stdin.end();

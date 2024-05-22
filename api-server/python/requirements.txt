@@ -1,5 +1,5 @@
 absl-py==2.1.0
-altgraph @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/altgraph-0.17.2-py2.py3-none-any.whl
+altgraph==0.17.2
 annotated-types==0.6.0
 anyio==4.3.0
 astunparse==1.6.3
@@ -16,7 +16,7 @@ distro==1.9.0
 exceptiongroup==1.2.1
 flatbuffers==24.3.25
 fonttools==4.51.0
-future @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/future-0.18.2-py3-none-any.whl
+future==0.18.2
 gast==0.5.4
 google-auth==2.29.0
 google-auth-oauthlib==1.2.0
@@ -33,7 +33,7 @@ jmespath==1.0.1
 keras==3.3.3
 kiwisolver==1.4.5
 libclang==18.1.1
-macholib @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/macholib-1.15.2-py2.py3-none-any.whl
+macholib==1.15.2
 Markdown==3.6
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5

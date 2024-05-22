@@ -12,6 +12,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from openai import OpenAI
@@ -406,9 +408,23 @@ def collect_data(driver, url):
         print(f"{url} 완료")
 
 def setup_driver():
-    options = webdriver.ChromeOptions()
+    options = Options()
+    # 필수적인 옵션들을 추가
+    options.add_argument('--headless')  # GUI 없이 실행
+    options.add_argument('--no-sandbox')  # Sandbox 프로세스 사용 안함
+    options.add_argument('--disable-dev-shm-usage')  # /dev/shm 파티션 사용 안함
+    options.add_argument('--disable-gpu')  # GPU 가속 사용 안함
     options.add_argument("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36")
-    driver = webdriver.Chrome(options=options)
+    options.add_argument('start-maximized')  # 최대 크기 윈도우 시작
+    options.add_argument('disable-infobars')  # 정보바 표시 안함
+    options.add_argument('--disable-extensions')  # 확장 기능 사용 안함
+
+    # ChromeDriverManager를 통해 자동으로 최신 ChromeDriver를 다운로드하고 경로를 설정
+    service = Service(ChromeDriverManager().install())
+    
+    # 수정된 옵션으로 WebDriver 객체 생성
+    driver = webdriver.Chrome(service=service, options=options)
+    
     return driver
 
 def save_to_csv(datas, folder_path):
